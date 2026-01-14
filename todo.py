@@ -26,6 +26,16 @@ def add_task(title):
     task.append(new_task)
     save_tasks(task)
     print(f'Task added: {title}')
+
+def mark_done(task_id):
+    tasks=load_tasks()
+    for task in tasks:
+        if task["id"]==task_id:
+            task["done"]=True
+            save_tasks(tasks)
+            print(f'Task {task_id} marked as done.')
+            return
+    print(f'Task with id {task_id} not found.')
 if __name__=='main':
     if len(sys.argv) < 2: 
         print("Usage:") 
@@ -40,7 +50,18 @@ if __name__=='main':
             print("Error: Task title required.")
             sys.exit(1)
         add_task(sys.argv[2])
+    elif command == "done":
+     if len(sys.argv) < 3:
+        print("Error: Task ID required.")
+        sys.exit(1)
+
+     try:
+        task_id = int(sys.argv[2])
+     except ValueError:
+        print("Error: Task ID must be a number.")
+        sys.exit(1)
+
+     mark_done(task_id)
     else:
         print(f"Unknown command: {command}")
-
     
