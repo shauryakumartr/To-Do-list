@@ -36,6 +36,20 @@ def mark_done(task_id):
             print(f'Task {task_id} marked as done.')
             return
     print(f'Task with id {task_id} not found.')
+def delete_task(task_id):
+    tasks=load_tasks()
+    new_tasks=list()
+    for task in tasks:
+        if task["id"]!=task_id:
+            new_tasks.append(task)
+    if len(tasks)==len(new_tasks):
+        print(f'Task with id {task_id} not found')
+    save_tasks(new_tasks)
+    print(f"Task {task_id} deleted.")
+
+
+
+
 if __name__=='main':
     if len(sys.argv) < 2: 
         print("Usage:") 
@@ -62,6 +76,17 @@ if __name__=='main':
         sys.exit(1)
 
      mark_done(task_id)
+    elif command=="delete":
+        if len(sys.argv)<3:
+            print("Task id required")
+            sys.exit(1)
+        try:
+            task_id=int(sys.argv[2])
+        except ValueError:
+            print("Error : Task id must be integer")
+            sys.exit(1)
+        delete_task(task_id)
+
     else:
         print(f"Unknown command: {command}")
     
