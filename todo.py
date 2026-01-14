@@ -1,3 +1,4 @@
+print("Debbuing")
 import json
 import os
 import sys
@@ -46,11 +47,7 @@ def delete_task(task_id):
         print(f'Task with id {task_id} not found')
     save_tasks(new_tasks)
     print(f"Task {task_id} deleted.")
-
-
-
-
-if __name__=='main':
+if __name__=='__main__':
     if len(sys.argv) < 2: 
         print("Usage:") 
         print(" python todo.py list") 
