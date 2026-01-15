@@ -1,4 +1,4 @@
-print("Debbuing")
+
 import json
 import os
 import sys
@@ -17,8 +17,8 @@ def list_tasks():
         print("No task found")
         return 
     for task in tasks:
-        status= "✅" if task["Done"] else "❌"
-        print(f'{task["id"]} . [{status}] {task["Title"]}')
+        status= "✅" if task["done"] else "❌"
+        print(f'{task["id"]} . [{status}] {task["title"]}')
 
 def add_task(title):
     task=load_tasks()
